@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} CONSULTAS | EDIT {% endblock %}
+
+{% block content %}
+
+<h1>Actualización de consulta</h1>
+
+<form action="{{ url_for('consulta.edit', id=consulta.id) }}" method="POST">
+
+    <div class="mb-3">
+        <label class="form-label">Médico</label>
+        <select name="medico_id" class="form-control" required>
+            {% for medico in medicos %}
+            <option value="{{ medico.id }}"
+                {% if medico.id == consulta.medico_id %}selected{% endif %}>
+                {{ medico.nombre }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Paciente</label>
+        <select name="paciente_id" class="form-control" required>
+            {% for paciente in pacientes %}
+            <option value="{{ paciente.id }}"
+                {% if paciente.id == consulta.paciente_id %}selected{% endif %}>
+                {{ paciente.nombre }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Diagnóstico</label>
+        <input type="text" class="form-control" name="diagnostico" value="{{ consulta.diagnostico }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Tratamiento</label>
+        <input type="text" class="form-control" name="tratamiento" value="{{ consulta.tratamiento }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Fecha</label>
+        <input type="date" class="form-control"
+               name="fecha"
+               value="{{ consulta.fecha.strftime('%Y-%m-%d') }}"
+               required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Actualizar consulta
+    </button>
+
+</form>
+
+{% endblock %}

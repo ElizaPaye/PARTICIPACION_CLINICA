@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} LOGIN {% endblock %}
+
+{% block content %}
+
+<h1>Login de Usuario</h1>
+
+<form action="{{ url_for('usuario.login') }}" method="POST">
+
+    <div class="mb-3">
+        <label>Usuario</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Contraseña</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
+
+    <button class="btn btn-primary">Ingresar</button>
+
+</form>
+
+<a href="{{ url_for('usuario.register') }}">Crear cuenta</a>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} REGISTER {% endblock %}
+
+{% block content %}
+
+<h1>Registro de Usuario</h1>
+
+<form action="{{ url_for('usuario.register') }}" method="POST">
+
+    <div class="mb-3">
+        <label>Usuario</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Contraseña</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Rol</label>
+        <select name="rol" class="form-control" required>
+            <option value="admin">Admin</option>
+            <option value="medico">Médico</option>
+        </select>
+    </div>
+
+    <button class="btn btn-success">Registrar</button>
+
+</form>
+
+<a href="{{ url_for('usuario.login') }}">Ya tengo cuenta</a>
+
+{% endblock %}
